@@ -8,6 +8,7 @@ First time running the program, open the terminal in the folder with README.txt 
 3. py -m venv env
 4. .\env\Scripts\activate
 5. pip install -r requirements.txt
+6. python website.py
 
 Then afterwards you just have to open the terminal in the folder wiht README.txt:
 1. .\env\Scripts\activate
