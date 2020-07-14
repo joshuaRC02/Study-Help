@@ -1,0 +1,35 @@
+title: "combining rates and ratios"
+question: "If 'name1' can paint a fence in 'x' hours and 'name2' can paint a fence in 'y' hours. How many hours would it take them to paint 'z' fences?"
+type: "equation"
+variables: x:int:2<24, y:int:2<24, z:int:2<100, names:names:2
+equation_vars: answer = 'z' / (1 / 'x' + 1 / 'y')
+round:0
+hint: "answer = z / (1 / x + 1 / y)"
+reasoning: " "
+
+title: "sum of the reciprocals"
+question: "The sum of a and b is 'p'. The product of a and b is 'q'. If the sum of the reciprocals of a and b is written as a fraction p/q in simplest form, what is the value of p + q?"
+type: "equation"
+variables: a:int:1<250, b:int:1<250
+equation_vars: p = 'a' + 'b', q = 'a' * 'b', answer = 'p' / 'q'
+round:4
+hint: "answer = (a + b) / (a * b)"
+reasoning: " "
+
+title: "mixing problems"
+question: "A store sells two versions of trail mix: one that is 'x'% peanuts and one that is 'y'% peanuts. If you want to make 'n' pounds of trail mix that is 'z'% peanuts, how many pounds of the 'x'% mix will you need?"
+type: "equation"
+variables: x:int:0<49, y:int:50<100, n:int:100<1000, z:var:'x'<'y'
+equation_vars: answer = 'n' - ('n' * ('z' - 'x') / ('y' - 'x'))
+round:0
+hint: "answer = n - (n * (z - x) / (y - x))"
+reasoning: " "
+
+title: "ratios in word problems"
+question: "A 'x'-foot piece of rope is cut into two pieces with lengths in a ratio of 'y':'z'. How many inches long is the second piece?"
+type: "equation"
+variables: x:int:10<500, y:int:1<25, z:int:1<25
+equation_vars: answer = 12 * 'z' * 'x' / ('y' + 'z')
+round:0
+hint: "answer = 12 * z * x / (y + z)"
+reasoning: " "

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block left %}
+<h3 class="title">Session Info</h3>
+<ul>Current subjects:
+    {% for s in session['subjects'] %}
+    <li>{{ s }}</li>
+    {% endfor %}
+</ul>
+<ul>Stats:
+    <li>Correct: {{ session['correct'] }}</li>
+    <li>Accuracy: {{ session['accuracy'] }}</li>
+    <li>Streak: {{ session ['streak'] }}</li>
+</ul>
+    {% if session['last_answered'] %}
+    <ul>Last question:
+        <li>Result: {{ session['last_result'] }}</li> 
+        <li>Question: {{ session['last_question'] }}</li> 
+        <li>Answer: {{ session['last_answer'] }}</li> 
+        <li>Hint: {{ session['last_hint'] }}</li> 
+        <li>Reasoning: {{ session['last_reasoning'] }}</li> 
+    </ul>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="col-sm-8 mx-auto">
+    <h3>Question {{ session['question_num'] }}:</h3>
+    <h1>{{ session['question'] }}</h1><br>
+    <div>
+        <form class="mt-2 mt-md-0" method="POST">
+            <input type="text" class="form-control" placeholder="Answer here plz" id="answer" name="answer" autocomplete="off" required>
+            <div>
+                <button type="button" class="btn btn-outline-success my-2 my-sm-0" id="button" aria-describedby="tooltip">Hint?</button>
+                <div id="tooltip" role="tooltip">{{ session['hint'] }}<div id="arrow" data-popper-arrow></div>
+            </div>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block right %}
+
+{% endblock %}

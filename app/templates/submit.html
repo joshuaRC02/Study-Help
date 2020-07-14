@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block left %}
+
+{% endblock %}
+
+{% block content %}
+<div id="text">
+    <h3>Fill out the form below in order to submit a question to be reviewed:</h3>
+    <br>
+    <body class="text-center" data-gr-c-s-loaded="true">
+        <form class="form-submit"  method="POST">
+            <div class="mb-3">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" placeholder="Title example: sum of n terms" id="title" name="title" autocomplete="off" required>
+            </div>
+            <div class="mb-3">
+                <label for="question">Question:</label>
+                <input type="text" class="form-control" placeholder="Question example: What is the value of this expression: 'a' + 'o' + ... + 'f'" id="question" name="question" autocomplete="off" required>
+            </div>
+            <div class="mb-3">
+                <label for="variables">Variables:</label>
+                <input type="text" class="form-control" placeholder="Variables example: a:int:-100<100, d:int:-100<100, n:int:20<50" id="variables" name="variables" autocomplete="off" required>
+            </div>
+            <div class="mb-3">
+                <label for="equation_vars">Equation Variables:</label>
+                <input type="text" class="form-control" placeholder="Equation Variables example: o='a' + 'd', f= 'a' + ('n' - 1) * 'd', answer = (2 * 'a' + ('n' - 1) * 'd') * 'n' / 2" id="equation_vars" name="equation_vars" autocomplete="off" required>
+            </div>
+            <div class="mb-3">
+                <label for="hint">Hint:</label>
+                <input type="text" class="form-control" placeholder="Hint example: answer = (2 * a + (n - 1) * d) * n / 2" id="hint" name="hint" autocomplete="off" required>
+            </div>
+            <div class="mb-3">
+                <label for="reasoning">Reasoning:</label>
+                <input type="text" class="form-control" placeholder="Reasoning example:  " id="reasoning" name="reasoning" autocomplete="off" required>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="type">Type:</label> <br>
+                    <select id="type" name="type">
+                        <option value="equation">Equation</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="round">Round:</label>
+                    <input type="number" class="form-control" value="0" id="round" name="round" autocomplete="off" required>
+                </div>
+            </div>
+            <button class="btn btn-lg btn-outline-success btn-block" type="submit">Submit</button>
+        </form>
+    </body>
+</div>
+{% endblock %}
+
+{% block right %}
+
+{% endblock %}

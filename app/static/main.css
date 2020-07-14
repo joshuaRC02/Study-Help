@@ -1,0 +1,11 @@
+
+/* this to make it so that the box is the checkbox*/
+input:checked + label .check {
+    visibility: visible;
+    background-color: #28a745;
+    color: #fff;
+}
+
+input.checkbox:checked + label:before {
+    content: "";
+}

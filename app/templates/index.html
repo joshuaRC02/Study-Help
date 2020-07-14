@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block left %}
+
+{% endblock %}
+
+{% block content %}
+<div id="text">
+    <h3>Hi! Which subjects would you like to study (choose at least one or else...)</h3>
+    <br>
+    <body class="text-center" data-gr-c-s-loaded="true">
+        <form class="form-signin" method="POST">
+            {% for s in subjects %}
+            <input type="checkbox" name="subjects" id={{ s }} value={{ s }} checked hidden>
+            <label for={{ s }}><div class="btn btn-outline-success my-2 my-sm-0 check">{{ s.replace('_', ' ') }}</div></label>
+            {% endfor%}
+            <button class="btn btn-lg btn-outline-success btn-block" type="submit">Submit</button>
+        </form>
+    </body>
+</div>
+{% endblock %}
+
+{% block right %}
+
+{% endblock %}
