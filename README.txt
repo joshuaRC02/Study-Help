@@ -7,7 +7,7 @@ REQUIRMENTS:
 
 WINDOWS:
 Open the terminal in the folder with README.txt:
-1. go to whichever folder has the README.txt
+1. have the folder open that has the README.txt 
 2. press 'shift + right click' anyhwere
 3. select "Open PowerShell window here"
 
@@ -25,9 +25,8 @@ Then afterwards you just have to open the terminal in the folder wiht README.txt
 
 MAC:
 Open the terminal in the folder with README.txt:
-1. go to whichever folder has the README.txt
-2. press 'shift + right click' anyhwere
-3. select "Open PowerShell window here"
+1. open a seperate terminal
+2. drag and drop onto the terminal the folder named "study_help-master" that has this readme.txt in it
 
 First time running the program, open the terminal in the folder with README.txt and run the following commands:
 1. python -m pip install pip
