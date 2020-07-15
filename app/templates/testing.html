@@ -14,7 +14,8 @@
 </ul>
     {% if session['last_answered'] %}
     <ul>Last question:
-        <li>Result: {{ session['last_result'] }}</li> 
+        <li>Result: {{ session['last_result'] }}</li>
+        <li>Duration: {{ session['last_time'] }} seconds</li> 
         <li>Question: {{ session['last_question'] }}</li> 
         <li>Answer: {{ session['last_answer'] }}</li> 
         <li>Hint: {{ session['last_hint'] }}</li> 
@@ -41,5 +42,4 @@
 {% endblock %}
 
 {% block right %}
-
 {% endblock %}

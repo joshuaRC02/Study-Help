@@ -39,6 +39,7 @@ def questions():
 
 @app.route('/testing', methods = ['GET', 'POST'])
 def testing():
+    from timeit import default_timer as timer
     if  request.method == 'POST':
         session['question_num'] = session['question_num'] + 1
         if  session.get('answer') in request.form['answer']:
@@ -55,6 +56,7 @@ def testing():
         session['last_hint'] = session.pop('hint')
         session['last_question'] = session.pop('question')
         session['last_reasoning'] = session.pop('reasoning')
+        session['last_time'] =  round(timer() - session.pop('time'))
         session['last_answered'] = True
         return redirect(url_for('testing'))
 
@@ -65,7 +67,7 @@ def testing():
     session['answer'] = q[1]
     session['hint'] = q[2]
     session['reasoning'] =q[3]
-
+    session['time'] = timer()
     return render_template('testing.html', title='Trainer')
 
 @app.route('/submit', methods = ['GET', 'POST'])
