@@ -1,5 +1,5 @@
 # sets up how the website flows
-from flask import render_template, flash, redirect, request, url_for, session
+from flask import render_template, flash, redirect, request, url_for, session, send_file
 from app import app
 from os import getcwd
 # home page stuff
@@ -8,7 +8,7 @@ from os import getcwd
 def index():
     # initalizing all the vars for the session
     path = getcwd()
-    path = path + "\\questions\\subjects.txt"
+    path = path + "/questions/subjects.txt"
     f = open(path, 'r')
     subjects = list(f.readlines())
     f.close()
@@ -72,9 +72,10 @@ def testing():
 def submit():
     if request.method == 'POST':
         path = getcwd()
-        path = path + "\\questions\\submitted questions.txt"
+        path = path + "submitted questions.txt"
         f = open(path, 'a')        
         # adding all the different vars to the new question file
+        f.write('subject: "{}'.format(request.form['subject']))
         f.write('title: "{}"\n'.format(request.form['title']))
         f.write('question: "{}"\n'.format(request.form['question']))
         f.write('type: "{}"\n'.format(request.form['type']))
@@ -86,6 +87,11 @@ def submit():
         f.close()
         return redirect(url_for('submit'))
     return render_template('submit.html', title='Submit')
+
+@app.route('/submit/download')
+def download():
+    path = "submitted_questions.txt"
+    return send_file(path, as_attachment=True)
 
 @app.route('/new_session')
 def new_session():

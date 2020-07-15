@@ -6,10 +6,16 @@
 
 {% block content %}
 <div id="text">
-    <h3>Fill out the form below in order to submit a question to be reviewed:</h3>
+    <h3>Fill out the form below in order to submit a question:</h3>
+    <p>If you want these questions to be reviewed and possibly added make sure to email submitted_questions.txt to joshuarclark02@gmail.com. <br>
+    To download submitted_questions.txt <a href="{{ url_for('download') }}" target="_blank">click here</a></p>
     <br>
     <body class="text-center" data-gr-c-s-loaded="true">
         <form class="form-submit"  method="POST">
+            <div class="mb-3">
+                <label for="subject">Subject:</label>
+                <input type="text" class="form-control" placeholder="Subject example: Ratios" id="subject" name="subject" autocomplete="off" required>
+            </div>
             <div class="mb-3">
                 <label for="title">Title:</label>
                 <input type="text" class="form-control" placeholder="Title example: sum of n terms" id="title" name="title" autocomplete="off" required>

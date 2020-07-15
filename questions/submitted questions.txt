@@ -1,8 +1,0 @@
-title: "asf"
-question: "fa"
-type: "equation"
-variables: FSASFA
-equation_vars: fsaADGS
-round: 0
-hint: "DGSAGDAS"
-reasoning: "GDASGDSA"
