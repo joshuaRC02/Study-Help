@@ -4,6 +4,7 @@ pip freeze to get requirements file
 
 REQUIRMENTS:
 1. python 3.6+
+2. pip3
 
 WINDOWS:
 Open the terminal in the folder with README.txt:
@@ -29,13 +30,13 @@ Open the terminal in the folder with README.txt:
 2. drag and drop onto the terminal the folder named "study_help-master" that has this readme.txt in it
 
 First time running the program, open the terminal in the folder with README.txt and run the following commands:
-1. python -m pip install pip
-2. python -m pip install pipenv
+1. pip3 install pip --upgrade
+2. pip3 install pipenv --upgrade
 3. pipenv install
 4. pipenv shell
-5. pip install -r requirements.txt
-6. python website.py
+5. pip3 install -r requirements.txt
+6. python3 website.py
 
 Then afterwards you just have to open the terminal in the folder wiht README.txt and run the following commands:
 1. pipenv shell
-2. python website.py
+2. python3 website.py
