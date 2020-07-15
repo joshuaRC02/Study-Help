@@ -18,11 +18,11 @@ First time running the program, open the terminal in the folder with README.txt 
 3. py -m venv env
 4. .\env\Scripts\activate
 5. pip3 install -r requirements.txt
-6. python3 website.py
+6. python website.py
 
 Then afterwards you just have to open the terminal in the folder wiht README.txt and run the following commands:
 1. .\env\Scripts\activate
-2. python3 website.py
+2. python website.py
 
 MAC:
 Open the terminal in the folder with README.txt:
