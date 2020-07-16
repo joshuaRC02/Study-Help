@@ -36,6 +36,6 @@ Study help is an app made to help me study with variety and perzonlization
 3. ```source env/bin/activate```
 4. ```pip3 install -r requirements.txt```
 
-### Then afterwards you just have to open the terminal in the folder wiht README.txt and run the following commands:
+### Start the app:
 1. ```pipenv shell```
 2. ```python3 website.py```
