@@ -94,6 +94,7 @@ def submit():
 
 @app.route('/submit/download')
 def download():
+    path = getcwd()
     path = "submitted_questions.txt"
     return send_file(path, as_attachment=True)
 

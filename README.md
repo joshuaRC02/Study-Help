@@ -4,7 +4,7 @@ Study help is an app made to help me study with variety and perzonlization
 
 ## Prerequisites:
 
-* [python 3+](https://www.python.org/)
+* [python 3.3+](https://www.python.org/)
 * [pip](https://pip.pypa.io/en/stable/installing/)
 
 WINDOWS:
@@ -14,8 +14,6 @@ Open the terminal in the folder with README.txt:
 3. select "Open PowerShell window here"
 
 First time running the program, open the terminal in the folder with README.txt and run the following commands:
-1. python3 -m pip install pip
-2. pip3 install --user virtualenv
 3. py -m venv env
 4. .\env\Scripts\activate
 5. pip3 install -r requirements.txt
@@ -25,16 +23,14 @@ Then afterwards you just have to open the terminal in the folder wiht README.txt
 1. .\env\Scripts\activate
 2. python website.py
 
-MAC:
+macOS/Linux:
 Open the terminal in the folder with README.txt:
 1. open a seperate terminal
 2. drag and drop onto the terminal the folder named "study_help-master" that has this readme.txt in it
 
 First time running the program, open the terminal in the folder with README.txt and run the following commands:
-1. pip3 install pip --upgrade
-2. pip3 install pipenv --upgrade
-3. pipenv install
-4. pipenv shell
+3. python3 -m venv env
+4. source env/bin/activate
 5. pip3 install -r requirements.txt
 6. python3 website.py
 
@@ -44,3 +40,5 @@ Then afterwards you just have to open the terminal in the folder wiht README.txt
 
 
 pip freeze to get requirements file
+to export exe
+
