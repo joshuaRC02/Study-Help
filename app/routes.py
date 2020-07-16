@@ -20,6 +20,8 @@ def index():
     session['accuracy'] = 'None wrong so far, good job!'
     if  request.method == 'POST':
         subjects = request.form.getlist('subjects')
+        if subjects == []:
+            return redirect(url_for('index'))
         session['subjects'] = [_.replace("_", " ") for _ in subjects]
         return redirect(url_for('questions'))
     # renders the given template and then defines vars
