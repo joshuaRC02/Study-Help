@@ -1,3 +1,4 @@
 /env/
 test.py
 *.__wz_cache
+.vscode
