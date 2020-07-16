@@ -1,10 +1,11 @@
+# Study Help
 
+Study help is an app made to help me study with variety and perzonlization
 
-pip freeze to get requirements file
+## Prerequisites:
 
-REQUIRMENTS:
-1. python 3+
-2. pip3
+* [python 3+](https://www.python.org/)
+* [pip](https://pip.pypa.io/en/stable/installing/)
 
 WINDOWS:
 Open the terminal in the folder with README.txt:
@@ -40,3 +41,6 @@ First time running the program, open the terminal in the folder with README.txt 
 Then afterwards you just have to open the terminal in the folder wiht README.txt and run the following commands:
 1. pipenv shell
 2. python3 website.py
+
+
+pip freeze to get requirements file
