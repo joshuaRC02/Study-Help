@@ -76,10 +76,10 @@ def testing():
 def submit():
     if request.method == 'POST':
         path = getcwd()
-        path = path + "submitted questions.txt"
+        path = path + "/submitted_questions.txt"
         f = open(path, 'a')        
         # adding all the different vars to the new question file
-        f.write('subject: "{}'.format(request.form['subject']))
+        f.write('\nsubject: "{}"\n'.format(request.form['subject']))
         f.write('title: "{}"\n'.format(request.form['title']))
         f.write('question: "{}"\n'.format(request.form['question']))
         f.write('type: "{}"\n'.format(request.form['type']))
@@ -92,10 +92,10 @@ def submit():
         return redirect(url_for('submit'))
     return render_template('submit.html', title='Submit')
 
-@app.route('/submit/download')
+@app.route('/submit_download')
 def download():
     path = getcwd()
-    path = "submitted_questions.txt"
+    path = path + "/submitted_questions.txt"
     return send_file(path, as_attachment=True)
 
 @app.route('/new_session')

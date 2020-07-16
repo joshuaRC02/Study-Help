@@ -1,0 +1,39 @@
+subject: "asdgf"
+title: "vds"
+question: "gdasgd"
+type: "equation"
+variables: gdsgsad
+equation_vars: gdsagsd
+round: 0
+hint: "gdsgdsa"
+reasoning: "gdsgdsa"
+
+subject: "dgs"
+title: "dgsadgs"
+question: "gdsgds"
+type: "equation"
+variables: dgdg
+equation_vars: dggds
+round: 0
+hint: "dgsagdsa"
+reasoning: "gddggdsa"
+
+subject: "asdg"
+title: "asdg"
+question: "asdg"
+type: "equation"
+variables: asdg
+equation_vars: asdg
+round: 0
+hint: "asdg"
+reasoning: "asdg"
+
+subject: "eywery"
+title: "asdfg"
+question: "asdf"
+type: "equation"
+variables: asdf
+equation_vars: sadfg
+round: 0
+hint: "sdg"
+reasoning: "sdgf"
