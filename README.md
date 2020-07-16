@@ -14,7 +14,7 @@ Study help is an app made to help me study with variety and perzonlization
 3. select "Open PowerShell window here"
 
 ### Installing the app:
-1: open the terminal in the folder with README.txt
+1. open the terminal in the folder with README.txt
 2. ```py -m venv env```
 3. ```.\env\Scripts\activate```
 4. ```pip3 install -r requirements.txt```
