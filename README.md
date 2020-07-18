@@ -5,7 +5,7 @@ Study help is an app made to help me study with variety and perzonlization
 ## Prerequisites:
 
 * [python 3.3+](https://www.python.org/)
-* [pip](https://pip.pypa.io/en/stable/installing/)
+* [pip (latest)](https://pip.pypa.io/en/stable/installing/)
 
 ## Windows:
 ### How to open the terminal in the folder with README.txt:
