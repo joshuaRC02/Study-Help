@@ -46,7 +46,10 @@ def testing():
     from timeit import default_timer as timer
     if  request.method == 'POST':
         session['question_num']+=1
-        if  session.get('answer') in request.form['answer']:
+        answer = request.form['answer']
+        if answer.replace('.', '').isnumeric():
+                answer = float(answer)
+        if  session['answer'] == answer:
             session['last_result'] = "Correct, good job!"
             session['correct']+= 1
             session['streak']+= 1
@@ -67,7 +70,7 @@ def testing():
     from qGetter import qGetter
     q = qGetter(session['questions'])
     session['question'] = str(q['question'])
-    session['answer'] = str(q['answer'])
+    session['answer'] = q['answer']
     session['hint'] = str(q['hint'])
     session['reasoning'] = str(q['reasoning'])
     session['time'] = timer()
@@ -140,6 +143,9 @@ def test_setup():
     f = open(path, 'r')
     test_questions = list(f.readlines())
     f.close()
+    session['correct_value'] = int(test_questions.pop(0).split(':')[1].replace(' ', ''))
+    session['incorrect_value'] = int(test_questions.pop(0).split(':')[1].replace(' ', ''))
+    session['unanswered_value'] = int(test_questions.pop(0).split(':')[1].replace(' ', ''))
     question_num = 0
     test = []
     for subjects in test_questions:
@@ -159,12 +165,18 @@ def test_setup():
 
 @app.route('/UIL_tester', methods = ['GET', 'POST'])
 def UIL_tester():
+    from timeit import default_timer as timer
     if request.method == 'POST':
-        session['correct'] = session['incorrect'] = session['questions'] = 0
+        session['correct'] = session['questions'] = session['unanswered']= 0
         answerlist = request.form.getlist('answer')
         for q in session['test']:
             answer = answerlist.pop(0)
             q['your_answer'] = answer 
+            if answer.replace(' ', '') == '':
+                session['unanswered']+=1
+                continue
+            if answer.replace('.', '').isnumeric():
+                answer = float(answer)
             session['questions']+=1
             if q['answer'] == answer:
                 q['result'] = 'Correct'
@@ -172,9 +184,13 @@ def UIL_tester():
             else:
                 q['result'] = 'Incorrect'
         session['accuracy'] = session['correct'] / session['questions']
+        session['time'] =  round(timer() - session.pop('time'))
+        session['avg_time'] = session['time'] // session['questions']
         return redirect(url_for('UIL_results'))
+    session['time'] = timer()
     return render_template('test.html', title='Trainer')
 
 @app.route('/UIL_results', methods = ['GET', 'POST'])
 def UIL_results():
+    session['points'] = int(session['correct']) * session['correct_value'] - int(session['incorrect']) * session['incorrect_value'] - int(session['unanswered']) * session['unanswered_value']
     return render_template('test_results.html')

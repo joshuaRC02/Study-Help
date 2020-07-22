@@ -1,3 +1,13 @@
-sequences, ratios, ratios
-n-sided polygons,
-ratios,
+correct_value:6
+incorrect_value:2
+unanswered_value:0
+ratios
+ratios
+ratios
+ratios
+ratios
+ratios
+ratios
+ratios
+ratios
+ratios
