@@ -7,28 +7,30 @@ from os import getcwd
 @app.route('/index', methods = ['GET', 'POST'])
 def index():
     # initalizing all the vars for the session
+    session['topic'] = 'subjects'
+    question_type = 'checkbox'
     path = getcwd()
     path = path + "/questions/subjects.txt"
     f = open(path, 'r')
     subjects = list(f.readlines())
     f.close()
-    subjects = [_.replace('\n', '').replace(" ", "_") for _ in subjects]
+    subjects = [_.rstrip().replace(" ", "_") for _ in subjects]
     session['question_num'] = 1
     session['correct'] = 0
     session['incorrect'] = 0
     session['streak'] = 0
     session['accuracy'] = 'None wrong so far, good job!'
     if  request.method == 'POST':
-        subjects = request.form.getlist('subjects')
+        subjects = request.form.getlist('options')
         if subjects == []:
             return redirect(url_for('index'))
         session['subjects'] = [_.replace("_", " ") for _ in subjects]
-        return redirect(url_for('questions'))
+        return redirect(url_for('question_setup'))
     # renders the given template and then defines vars
-    return render_template('index.html', title='Home', subjects=subjects)
+    return render_template('index.html', title='Home', options=subjects, question_type=question_type)
 
 @app.route('/question/setup')
-def questions():
+def question_setup():
     from qSetup import qSetup
     subjects = session['subjects']
     session['questions'] = {}
@@ -43,17 +45,16 @@ def questions():
 def testing():
     from timeit import default_timer as timer
     if  request.method == 'POST':
-        session['question_num'] = session['question_num'] + 1
+        session['question_num']+=1
         if  session.get('answer') in request.form['answer']:
             session['last_result'] = "Correct, good job!"
-            session['correct'] = session['correct'] + 1
-            session['streak'] = session['streak'] + 1
+            session['correct']+= 1
+            session['streak']+= 1
         else:
             session['last_result'] = "Incorrect, try again next time."
-            session['incorrect'] = session['incorrect'] + 1
+            session['incorrect']+=1
             session['streak'] = 0
-        if session['incorrect'] != 0:
-            session['accuracy'] = session['correct'] / session['incorrect']
+        session['accuracy'] = session['correct'] / session['question_num']
         session['last_answer'] = session.pop('answer')
         session['last_hint'] = session.pop('hint')
         session['last_question'] = session.pop('question')
@@ -64,11 +65,11 @@ def testing():
 
     
     from qGetter import qGetter
-    q = list(map(str, qGetter(session['questions'])))
-    session['question'] = q[0]
-    session['answer'] = q[1]
-    session['hint'] = q[2]
-    session['reasoning'] =q[3]
+    q = qGetter(session['questions'])
+    session['question'] = str(q['question'])
+    session['answer'] = str(q['answer'])
+    session['hint'] = str(q['hint'])
+    session['reasoning'] = str(q['reasoning'])
     session['time'] = timer()
     return render_template('testing.html', title='Trainer')
 
@@ -110,3 +111,70 @@ def shutdown():
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
     return 'Server shutting down...'
+
+@app.route('/gorrilla_apples', methods = ['GET', 'POST'])
+def UIL_index():
+    session['topic'] = 'UIL test'
+    question_type = 'radio'
+    path = getcwd()
+    path = path + "/UIL/UIL_tests.txt"
+    f = open(path, 'r')
+    tests = list(f.readlines())
+    f.close()
+    tests = [_.rstrip().replace(" ", "_") for _ in tests]
+    if  request.method == 'POST':
+        test = request.form['options']
+        if test == []:
+            return redirect(url_for('UIL_index'))
+        session['test_name'] = test
+        return redirect(url_for('test_setup'))
+    return render_template('index.html', title='UIL Tests', options=tests, question_type=question_type)
+
+
+@app.route('/test_setup')
+def test_setup():
+    from qSetup import qSetup
+    from qGetter import qGetter
+    path = getcwd()
+    path = path + "/UIL/{}_UIL.txt".format(session['test_name'])
+    f = open(path, 'r')
+    test_questions = list(f.readlines())
+    f.close()
+    question_num = 0
+    test = []
+    for subjects in test_questions:
+        question_num+=1 
+        # getting the avaliable subjects to be put in that spot and the question that come with them
+        subjects_list = subjects.split(',')
+        questions = {}
+        for subject in subjects_list:
+            questions.update(qSetup(subject.rstrip()))
+        # getting a random question from the list 
+        question = qGetter(questions)
+        # adding the question number to the question
+        question['number'] = question_num
+        test.append(question)
+    session['test'] = test
+    return redirect(url_for('UIL_tester'))
+
+@app.route('/UIL_tester', methods = ['GET', 'POST'])
+def UIL_tester():
+    if request.method == 'POST':
+        session['correct'] = session['incorrect'] = session['questions'] = 0
+        answerlist = request.form.getlist('answer')
+        for q in session['test']:
+            answer = answerlist.pop(0)
+            q['your_answer'] = answer 
+            session['questions']+=1
+            if q['answer'] == answer:
+                q['result'] = 'Correct'
+                session['correct']+=1
+            else:
+                q['result'] = 'Incorrect'
+        session['accuracy'] = session['correct'] / session['questions']
+        return redirect(url_for('UIL_results'))
+    return render_template('test.html', title='Trainer')
+
+@app.route('/UIL_results', methods = ['GET', 'POST'])
+def UIL_results():
+    return render_template('test_results.html')

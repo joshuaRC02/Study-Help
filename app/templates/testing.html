@@ -27,7 +27,7 @@
 {% block content %}
 <div class="col-sm-8 mx-auto">
     <h3>Question {{ session['question_num'] }}:</h3>
-    <h1>{{ session['question'] }}</h1><br>
+    <p class="lead font-weight-normal">{{ session['question'] }}</p>
     <div>
         <form class="mt-2 mt-md-0" method="POST">
             <input type="text" class="form-control" placeholder="Answer here plz" id="answer" name="answer" autocomplete="off" required>

@@ -58,20 +58,10 @@ def qGetter(q):
         except:
             qAnswer = qAnswer
     
-
     # giving all important info on a question back
-    return [qString, qAnswer, question['hint'], question['reasoning']]
+    return {'question':qString, 'answer':qAnswer, 'hint':question['hint'], 'reasoning':question['reasoning']}
     
 
 # from qSetup import qSetup
-# import timeit
-# q = qSetup("Sequences")
-# q.update(qSetup('Ratios'))
-# q.update(qSetup('N-sided polygons'))
-# def uhahugs():
-#     test = qGetter(q)
-#     # print(test[0])
-#     # print(test[1])
-#     # print(test[2])
-
-# print(timeit.timeit('uhahugs()', 'from __main__ import uhahugs, q ', number=10000))
+# q = qSetup('ratios')
+# print(qGetter(q))

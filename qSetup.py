@@ -55,5 +55,5 @@ def qSetup(subject):
 
 
 
-# q = qSetup('Extra Math')
+# q = qSetup('sequences')
 # print(q[set(q.keys()).pop()])
