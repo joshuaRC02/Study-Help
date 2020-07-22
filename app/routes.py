@@ -112,7 +112,7 @@ def shutdown():
     func()
     return 'Server shutting down...'
 
-@app.route('/gorrilla_apples', methods = ['GET', 'POST'])
+@app.route('/UIL_tests', methods = ['GET', 'POST'])
 def UIL_index():
     session['topic'] = 'UIL test'
     question_type = 'radio'
