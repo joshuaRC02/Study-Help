@@ -19,7 +19,9 @@
             <p class="lead  font-weight-normal"><b>Result: </b>{{ q['result'] }}</p>
             <p class="lead  font-weight-normal"><b>Your answer:</b> {{ q['your_answer'] }}</p>
             <p class="lead  font-weight-normal"><b>Correct answer:</b> {{ q['answer'] }}</p>
+        {% if q['type'] == 'equation' %}
             <p class="lead  font-weight-normal"><b>Reasoning behind correct answer:</b> {{ q['reasoning'] }}</p>
+        {% endif %}
         {% endfor %}
 </div>
 {% endblock %}

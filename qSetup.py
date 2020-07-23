@@ -3,7 +3,7 @@ def qSetup(subject):
     import os
     try :
         path = os.getcwd()
-        path = path + "\\questions\\" + subject + '.txt'
+        path = path + "/questions/" + subject + '.txt'
         f = open(path, 'r')
         qDoc = list(f.readlines())
         f.close()
@@ -14,8 +14,8 @@ def qSetup(subject):
 
     # making the question list usable
     questions = {}
-    for _ in qDoc:
-        temp = _.split(':', 1)
+    for line in qDoc:
+        temp = line.split(':', 1)
         # checking if it is an empty line
         if temp[0] == '\n':
             continue
@@ -28,11 +28,11 @@ def qSetup(subject):
             continue
         
         # question, type, and reasoning clean up
-        if temp[0] in ['question', 'type', 'reasoning', 'hint']:
+        elif temp[0] in ['question', 'type', 'reasoning', 'hint']:
             temp[1] = temp[1].split('"')[1]
 
         # variables and equationvar clean up
-        if temp[0] in ["variables", "equation_vars"]:
+        elif temp[0] in ["variables", "equation_vars"]:
             temp[1] = temp[1].replace(' ','').split(',')
             # variables clean up
             if temp[0] == "variables":
@@ -41,12 +41,16 @@ def qSetup(subject):
                     temp[1][_][2] = temp[1][_][2].split('<')  
             # equation_vars cleanup
             else:
-                for _ in range(len(temp[1])):
-                    temp[1][_] = temp[1][_].split('=')
+                temp[1] = [equation.split('=') for equation in temp[1]]
 
-        # round clean up
-        if temp[0] == 'round':
+        # round and operators clean up
+        elif temp[0] in ['round', 'operands']:
             temp[1] = int(temp[1])
+
+        elif temp[0] in ['seperating operators', 'single operators']:
+            temp[1] = temp[1].split(',')
+            temp[1] = [thing.split('"')[1] for thing in temp[1]]
+
         # adding the parameter once everything has been verified
         questions[title][temp[0]] = temp[1]
 
@@ -55,5 +59,5 @@ def qSetup(subject):
 
 
 
-# q = qSetup('sequences')
+# q = qSetup('order of operations')
 # print(q[set(q.keys()).pop()])

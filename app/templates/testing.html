@@ -17,9 +17,12 @@
         <li>Result: {{ session['last_result'] }}</li>
         <li>Duration: {{ session['last_time'] }} seconds</li> 
         <li>Question: {{ session['last_question'] }}</li> 
+        <li>Your answer: {{ session['your_last_answer'] }}</li>
         <li>Answer: {{ session['last_answer'] }}</li> 
-        <li>Hint: {{ session['last_hint'] }}</li> 
-        <li>Reasoning: {{ session['last_reasoning'] }}</li> 
+        {% if session['last_type'] == 'equation' %}
+            <li>Hint: {{ session['last_hint'] }}</li> 
+            <li>Reasoning: {{ session['last_reasoning'] }}</li> 
+        {% endif %}
     </ul>
     {% endif %}
 {% endblock %}
@@ -31,10 +34,12 @@
     <div>
         <form class="mt-2 mt-md-0" method="POST">
             <input type="text" class="form-control" placeholder="Answer here plz" id="answer" name="answer" autocomplete="off" required>
+            {% if session['type'] == 'equation' %}
             <div>
                 <button type="button" class="btn btn-outline-success my-2 my-sm-0" id="button" aria-describedby="tooltip">Hint?</button>
                 <div id="tooltip" role="tooltip">{{ session['hint'] }}<div id="arrow" data-popper-arrow></div>
             </div>
+            {% endif%}
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
         </form>
     </div>

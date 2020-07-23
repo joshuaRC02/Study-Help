@@ -47,9 +47,7 @@ def testing():
     if  request.method == 'POST':
         session['question_num']+=1
         answer = request.form['answer']
-        if answer.replace('.', '').isnumeric():
-                answer = float(answer)
-        if  session['answer'] == answer:
+        if str(session['answer']) == str(answer):
             session['last_result'] = "Correct, good job!"
             session['correct']+= 1
             session['streak']+= 1
@@ -58,10 +56,13 @@ def testing():
             session['incorrect']+=1
             session['streak'] = 0
         session['accuracy'] = session['correct'] / session['question_num']
-        session['last_answer'] = session.pop('answer')
-        session['last_hint'] = session.pop('hint')
         session['last_question'] = session.pop('question')
-        session['last_reasoning'] = session.pop('reasoning')
+        session['last_answer'] = session.pop('answer')
+        session['your_last_answer'] = answer
+        session['last_type'] = session.pop('type')
+        if session['last_type'] == 'equation':
+            session['last_hint'] = session.pop('hint')
+            session['last_reasoning'] = session.pop('reasoning')
         session['last_time'] =  round(timer() - session.pop('time'))
         session['last_answered'] = True
         return redirect(url_for('testing'))
@@ -69,10 +70,12 @@ def testing():
     
     from qGetter import qGetter
     q = qGetter(session['questions'])
+    session['type'] = q['type']
+    if session['type'] == 'equation':
+        session['hint'] = str(q['hint'])
+        session['reasoning'] = str(q['reasoning'])
     session['question'] = str(q['question'])
     session['answer'] = q['answer']
-    session['hint'] = str(q['hint'])
-    session['reasoning'] = str(q['reasoning'])
     session['time'] = timer()
     return render_template('testing.html', title='Trainer')
 
