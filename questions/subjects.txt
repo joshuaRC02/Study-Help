@@ -1,4 +1,0 @@
-ratios
-n-sided polygons
-sequences
-order of operations

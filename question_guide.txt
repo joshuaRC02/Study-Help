@@ -1,0 +1,20 @@
+lines in between questions are ok they will just be removed
+whitespace not inside "" or '' will be removed
+
+example formating equation type question:{
+title: "..."
+question: "..."
+type: "equation"
+variables: ...
+equation_vars: ...
+round: ...
+hint: "..."
+reasoning: "...."
+}
+if a formula has a function in it like sign make sure to surround it in %%
+
+
+
+
+imports: random as rand, math as math
+Make Sure to put '' around vars being used in equations or formating

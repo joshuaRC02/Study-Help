@@ -3,7 +3,7 @@ def qSetup(subject):
     import os
     try :
         path = os.getcwd()
-        path = path + "/questions/" + subject + '.txt'
+        path = path + '/questions/' + subject + '.txt'
         f = open(path, 'r')
         qDoc = list(f.readlines())
         f.close()

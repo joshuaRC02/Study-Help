@@ -9,29 +9,40 @@ def index():
     # initalizing all the vars for the session
     session['topic'] = 'subjects'
     question_type = 'checkbox'
+    # getting the avaliable subjects
     path = getcwd()
-    path = path + "/questions/subjects.txt"
+    path = path + "/subjects.txt"
     f = open(path, 'r')
     subjects = list(f.readlines())
     f.close()
     subjects = [_.rstrip().replace(" ", "_") for _ in subjects]
-    session['question_num'] = 1
-    session['correct'] = 0
-    session['incorrect'] = 0
-    session['streak'] = 0
-    session['accuracy'] = 'None wrong so far, good job!'
+    #getting the avaliable UIL_questions 
+    path = getcwd()
+    path = path + "/UIL_questions.txt"
+    f = open(path, 'r')
+    UIL_questions  = list(f.readlines())
+    f.close()
+    UIL_questions  = [_.rstrip().replace(" ", "_") for _ in UIL_questions ]
+    # reseting a bunch of variables that are immeditely on the left when you enter
+    if 'question_num' not in session.keys():
+        session['question_num'] = 1
+        session['correct'] = 0
+        session['incorrect'] = 0
+        session['streak'] = 0
+        session['accuracy'] = 'None wrong so far, good job!'
     if  request.method == 'POST':
-        subjects = request.form.getlist('options')
+        subjects = request.form.getlist('subjects') + request.form.getlist('UIL_questions')
         if subjects == []:
             return redirect(url_for('index'))
         session['subjects'] = [_.replace("_", " ") for _ in subjects]
         return redirect(url_for('question_setup'))
     # renders the given template and then defines vars
-    return render_template('index.html', title='Home', options=subjects, question_type=question_type)
+    return render_template('index.html', title='Home', subjects=subjects, UIL_questions=UIL_questions,  question_type=question_type)
 
 @app.route('/question/setup')
 def question_setup():
     from qSetup import qSetup
+    subjects = []
     subjects = session['subjects']
     session['questions'] = {}
     for _ in subjects:
@@ -47,7 +58,9 @@ def testing():
     if  request.method == 'POST':
         session['question_num']+=1
         answer = request.form['answer']
-        if str(session['answer']) == str(answer):
+        if answer.replace('.', '').replace('-', '').isnumeric():
+            answer = float(answer)
+        if answer == session['answer']:
             session['last_result'] = "Correct, good job!"
             session['correct']+= 1
             session['streak']+= 1
@@ -120,6 +133,7 @@ def shutdown():
 
 @app.route('/UIL_tests', methods = ['GET', 'POST'])
 def UIL_index():
+    session.clear()
     session['topic'] = 'UIL test'
     question_type = 'radio'
     path = getcwd()
@@ -134,7 +148,7 @@ def UIL_index():
             return redirect(url_for('UIL_index'))
         session['test_name'] = test
         return redirect(url_for('test_setup'))
-    return render_template('index.html', title='UIL Tests', options=tests, question_type=question_type)
+    return render_template('test_index.html', title='UIL Tests', tests=tests, question_type=question_type)
 
 
 @app.route('/test_setup')
@@ -170,15 +184,14 @@ def test_setup():
 def UIL_tester():
     from timeit import default_timer as timer
     if request.method == 'POST':
-        session['correct'] = session['questions'] = session['unanswered']= 0
+        session['correct'] = session['questions'] = session['incorrect'] = session['unanswered']= 0
         answerlist = request.form.getlist('answer')
         for q in session['test']:
             answer = answerlist.pop(0)
-            q['your_answer'] = answer 
             if answer.replace(' ', '') == '':
                 session['unanswered']+=1
                 continue
-            if answer.replace('.', '').isnumeric():
+            if answer.replace('.', '').replace('-', '').isnumeric():
                 answer = float(answer)
             session['questions']+=1
             if q['answer'] == answer:
@@ -186,6 +199,8 @@ def UIL_tester():
                 session['correct']+=1
             else:
                 q['result'] = 'Incorrect'
+                session['incorrect']+=1
+            q['your_answer'] = answer 
         session['accuracy'] = session['correct'] / session['questions']
         session['time'] =  round(timer() - session.pop('time'))
         session['avg_time'] = session['time'] // session['questions']
