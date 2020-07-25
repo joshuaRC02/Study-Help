@@ -192,6 +192,8 @@ def UIL_tester():
         answerlist = request.form.getlist('answer')
         for q in session['test']:
             answer = answerlist.pop(0)
+            if type(answer) == str:
+                answer = answer.replace('_', ' ')
             if answer.replace(' ', '') == '':
                 session['unanswered']+=1
                 continue
