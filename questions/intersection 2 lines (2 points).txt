@@ -1,0 +1,17 @@
+title: <>upper<>
+question: <>Line L1 has 2 points at ('a', 'b') and ('c', 'd'). Line L2 has 2 points at ('e', 'f') and ('g', 'h'). If L1 intersects L2 at (a, b), then what does a + b equal?<>
+type: <>equation<>
+variables: a:int:-10<0,, b:int:1<25,, c:int:1<11,, d:int:-25<0,, e:int:1<11,, f:int:1<25,, g:int:-10<0,, h:int:-25<0
+equation_vars: m1 = ('d' - 'b') / ('c' - 'a'),, m2 = ('h' - 'f') / ('g' - 'e'),, b1 = 'b' - 'm1' * 'a',, b2 = 'f' - 'm2' * 'e',, x = ('b2' - 'b1') / ('m1' - 'm2'),, y = 'm1' * 'x' + 'b1',, answer = 'x' + 'y'
+round: 2
+hint: <>m = (y2 - y1) / (x2 - x1), y-int = y - m * x, a = (y-int2 - y-int1) / (m1 - m2), b = m * a + y-int<>
+reasoning: <> <>
+
+title: <>upper<>
+question: <>Line L1 has 2 points at ('a', 'b') and ('c', 'd'). Line L2 has 2 points at ('e', 'f') and ('g', 'h'). If L1 intersects L2 at (a, b), then what does a + b equal?<>
+type: <>equation<>
+variables: e:int:-10<0,, f:int:1<25,, g:int:1<11,, h:int:-25<0,, a:int:1<11,, b:int:1<25,, c:int:-10<0,, d:int:-25<0
+equation_vars: m1 = ('d' - 'b') / ('c' - 'a'),, m2 = ('h' - 'f') / ('g' - 'e'),, b1 = 'b' - 'm1' * 'a',, b2 = 'f' - 'm2' * 'e',, x = ('b2' - 'b1') / ('m1' - 'm2'),, y = 'm1' * 'x' + 'b1',, answer = 'x' + 'y'
+round: 2
+hint: <>m = (y2 - y1) / (x2 - x1), y-int = y - m * x, a = (y-int2 - y-int1) / (m1 - m2), b = m * a + y-int<>
+reasoning: <> <>
