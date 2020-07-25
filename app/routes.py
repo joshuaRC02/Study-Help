@@ -57,7 +57,7 @@ def testing():
     from timeit import default_timer as timer
     if  request.method == 'POST':
         session['question_num']+=1
-        answer = request.form['answer']
+        answer = request.form['answer'].replace('_', ' ')
         if answer.replace('.', '').replace('-', '').isnumeric():
             answer = float(answer)
         if answer == session['answer']:
@@ -87,6 +87,8 @@ def testing():
     if session['type'] == 'equation':
         session['hint'] = str(q['hint'])
         session['reasoning'] = str(q['reasoning'])
+    elif session['type'] == 'multiple_choice':
+        session['options'] = q['options']
     session['question'] = str(q['question'])
     session['answer'] = q['answer']
     session['time'] = timer()
@@ -160,6 +162,8 @@ def test_setup():
     f = open(path, 'r')
     test_questions = list(f.readlines())
     f.close()
+    # removes all the empty strings in the list
+    test_questions = [question for question in test_questions if question.rstrip('\n') != '']
     session['correct_value'] = int(test_questions.pop(0).split(':')[1].replace(' ', ''))
     session['incorrect_value'] = int(test_questions.pop(0).split(':')[1].replace(' ', ''))
     session['unanswered_value'] = int(test_questions.pop(0).split(':')[1].replace(' ', ''))

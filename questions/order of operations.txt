@@ -1,7 +1,7 @@
-title: "evalulate"
-question: "Evalulate "
-type: "evalulate"
+title: <>evalulate<>
+question: <>Evalulate <>
+type: <>evalulate<>
 operands: 6
-seperating operators: "{} + ", "{} - ", "{} * ", "{} / "
-single operators: "('x'**'y')", "math.factorial('x')", "(1/'x')", "math.cos('x')", "math.sin('x')", "math.tan('x')"
+seperating operators: <>{} + <>, <>{} - <>, <>{} * <>, <>{} / <>
+single operators: <>('x'**'y')<>, <>math.factorial('x')<>, <>(1/'x')<>, <>math.cos('x')<>, <>math.sin('x')<>, <>math.tan('x')<>
 round: 2

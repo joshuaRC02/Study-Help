@@ -33,12 +33,20 @@
     <p class="lead font-weight-normal">{{ session['question'] }}</p>
     <div>
         <form class="mt-2 mt-md-0" method="POST">
+            {% if session['type'] in ['equation', 'evalulate'] %}
             <input type="text" class="form-control" placeholder="Answer here plz" id="answer" name="answer" autocomplete="off" required>
             {% if session['type'] == 'equation' %}
             <div>
                 <button type="button" class="btn btn-outline-success my-2 my-sm-0" id="button" aria-describedby="tooltip">Hint?</button>
                 <div id="tooltip" role="tooltip">{{ session['hint'] }}<div id="arrow" data-popper-arrow></div>
             </div>
+            {% endif %}
+            {% elif session['type'] == 'multiple_choice' %}
+                {% for option in session['options'] %}
+                    <input type='radio' name="answer" id={{ option }} value={{ option }} checked hidden>
+                    <label for={{ option }}><div class="btn btn-outline-success my-2 my-sm-0 check">{{ option.replace('_', ' ') }}</div></label>
+                {% endfor %}
+                <br>
             {% endif%}
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
         </form>

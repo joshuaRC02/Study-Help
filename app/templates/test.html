@@ -11,7 +11,13 @@
             <h3>Question {{ q['number'] }}:</h3>
             <p class="lead font-weight-normal">{{ q['question'] }}</p>
         {% if q['type'] in ['equation', 'evalulate'] %}
-            <input type="text" class="form-control" placeholder="Answer here plz" id={{ q['number'] }} name='answer' autocomplete="off">
+            <input type="text" class="form-control" placeholder="Answer here plz" id={{ q['number'] }} name="answer" autocomplete="off">
+        {% elif q['type'] == 'multiple_choice' %}
+            {% for option in q['options'] %}
+                <input type='radio' name="answer" id={{ option }} value={{ option }} checked hidden>
+                <label for={{ option }}><div class="btn btn-outline-success my-2 my-sm-0 check">{{ option.replace('_', ' ') }}</div></label>
+            {% endfor %}
+            <br>
         {% endif%}
         {% endfor %}
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>

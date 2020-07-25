@@ -28,12 +28,12 @@ def qSetup(subject):
             continue
         
         # question, type, and reasoning clean up
-        elif temp[0] in ['question', 'type', 'reasoning', 'hint']:
-            temp[1] = temp[1].split('"')[1]
+        elif temp[0] in ['question', 'type', 'reasoning', 'hint', 'name_list', 'answer']:
+            temp[1] = temp[1].split('<>')[1]
 
         # variables and equationvar clean up
         elif temp[0] in ["variables", "equation_vars"]:
-            temp[1] = temp[1].replace(' ','').split(',')
+            temp[1] = temp[1].replace(' ','').split(',,')
             # variables clean up
             if temp[0] == "variables":
                 for _ in range(len(temp[1])):
@@ -49,7 +49,7 @@ def qSetup(subject):
 
         elif temp[0] in ['seperating operators', 'single operators']:
             temp[1] = temp[1].split(',')
-            temp[1] = [thing.split('"')[1] for thing in temp[1]]
+            temp[1] = [thing.split('<>')[1] for thing in temp[1]]
 
         # adding the parameter once everything has been verified
         questions[title][temp[0]] = temp[1]
