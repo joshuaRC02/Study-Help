@@ -171,7 +171,7 @@ def qGetter(q):
 # print(question['answer'])
 # print(question['question'])
 
-# checking to make sure the question actually works
-from qSetup import qSetup
-q = qSetup('evaluating 2 speeds')
-print(qGetter(q))
+# # checking to make sure the question actually works
+# from qSetup import qSetup
+# q = qSetup('evaluating 2 speeds')
+# print(qGetter(q))
