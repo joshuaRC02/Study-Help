@@ -3,3 +3,5 @@ line with two points (ratios)
 father of computer science
 x gal tank filled to y depth
 intersection 2 lines (2 points)
+evaluating 3 speeds
+evaluating 2 speeds

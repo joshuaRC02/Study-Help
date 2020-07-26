@@ -7,7 +7,7 @@ round: 2
 hint: <>m = (y2 - y1) / (x2 - x1), y-int = y - m * x, a = (y-int2 - y-int1) / (m1 - m2), b = m * a + y-int<>
 reasoning: <> <>
 
-title: <>upper<>
+title: <>lower<>
 question: <>Line L1 has 2 points at ('a', 'b') and ('c', 'd'). Line L2 has 2 points at ('e', 'f') and ('g', 'h'). If L1 intersects L2 at (a, b), then what does a + b equal?<>
 type: <>equation<>
 variables: e:int:-10<0,, f:int:1<25,, g:int:1<11,, h:int:-25<0,, a:int:1<11,, b:int:1<25,, c:int:-10<0,, d:int:-25<0

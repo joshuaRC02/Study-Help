@@ -1,7 +1,7 @@
 def varReplace(s):
     s = s.split("'")
     for _ in range(len(s)):
-        if s[_].isalnum():
+        if s[_] in list(varDict.keys()):
             s[_] = "varDict['{}']".format(s[_])
 
     return ''.join(s)
@@ -13,7 +13,7 @@ def qGetter(q):
     # randomly selecting a question and setting it as the question
     qList = list(q.keys())
     question = q[qList[rand.randint(0, len(qList) - 1)]]
-    # getting the the range variables generated
+    global varDict 
     varDict = {}
 
     # dealing with evalulate questions
@@ -73,9 +73,15 @@ def qGetter(q):
                 varDict[var[0]] = rand.randint(int(var[2][0]), int(var[2][1]))
             # getting var based on var values values
             elif var[1] == 'var':
-                low = varReplace(var[2][0])
-                high = varReplace(var[2][1])
-                varDict[var[0]] = rand.randint(eval(low), eval(high))  
+                if not var[2][0].isnumeric():
+                    low = eval(varReplace(var[2][0]))
+                else:
+                    low = int(var[2][0])
+                if not var[2][1].isnumeric():
+                    high = eval(varReplace(var[2][1]))
+                else:
+                    high = int(var[2][1])
+                varDict[var[0]] = rand.randint(low, high)  
             # getting random names
             elif var[1] == 'names':
                 for _ in range(1, int(var[2][0]) + 1):
@@ -97,7 +103,13 @@ def qGetter(q):
         
         # setting each var in the question to its corresponding var
         for _  in varDict:
-            qString = qString.replace("'{}'".format(_), str(eval(varReplace(_))))
+            # making it so you can throw the leading 0s on a var by adding '~~' to it
+            if '~~' in _:
+                lead = str(eval(varReplace(_))).zfill(2)
+                qString = qString.replace("'{}'".format(_), lead)
+            else:
+                qString = qString.replace("'{}'".format(_), str(eval(varReplace(_))))
+            
 
         # getting question according to vars
         reasoning = []
@@ -159,7 +171,7 @@ def qGetter(q):
 # print(question['answer'])
 # print(question['question'])
 
-# # checking to make sure the question actually works
-# from qSetup import qSetup
-# q = qSetup('father of computer science')
-# print(qGetter(q))
+# checking to make sure the question actually works
+from qSetup import qSetup
+q = qSetup('evaluating 2 speeds')
+print(qGetter(q))
