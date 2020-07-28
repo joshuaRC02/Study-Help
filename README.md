@@ -14,14 +14,14 @@ Study help is an app made to help me study with variety and perzonlization
 3. select "Open PowerShell window here"
 
 ### Installing the app:
-1. ```set-executionpolicy remotesigned current user``` this is to make it so you can apply these scripts
+1. ```set-executionpolicy remotesigned -scope currentuser``` this is to make it so you can apply these scripts
 2. open the terminal in the folder with README.txt
 3. ```py -m venv env```
 4. ```.\env\Scripts\activate```
 5. ```pip3 install -r requirements.txt```
 
 ### Start the app:
-1. ```set-executionpolicy remotesigned current user``` this is to make it so you can apply these scripts
+1. ```set-executionpolicy remotesigned -scope currentuser``` this is to make it so you can apply these scripts
 2. open the terminal in the folder with README.txt
 3. ```.\env\Scripts\activate```
 4. ```python website.py```
