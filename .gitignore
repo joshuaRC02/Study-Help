@@ -1,5 +1,7 @@
-/env/
+env/
 test.py
 .vscode
-/dist/
-/build/
+dist/
+build/
+*__pycache__/
+flask_session/
