@@ -14,9 +14,11 @@ setup(
     executables = [Executable("website.py")]
 )
 
-# python setup.py build
-# or python setup.py bdist_msi
+# ```python setup.py build```
+# or ```python setup.py bdist_msi```
 
 # if there is an error due to ...:
 # module not being recognized: add it to packages
 # files not being found: add it to include_files
+
+# licenses can be figured out with ```pip-licenses```
