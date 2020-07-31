@@ -1,8 +1,8 @@
 def qSetup(subject):
     # grabbing the questions from a seperate document
-    import os
+    import os,sys
     try :
-        path = os.getcwd()
+        path = os.path.abspath(os.path.dirname(sys.argv[0]))
         path = path + '/questions/' + subject + '.txt'
         f = open(path, 'r')
         qDoc = list(f.readlines())
