@@ -132,9 +132,9 @@ def qGetter(q):
         return {'type':question['type'], 'question':qString, 'answer':qAnswer, 'hint':question['hint'], 'reasoning':reasoning}
     
     elif question['type'] == 'multiple_choice':
-        import os
+        import os,sys
         # getting the list of options for the other places
-        path = os.getcwd()
+        path = os.path.abspath(os.path.dirname(sys.argv[0]))
         path = path + '/lists/{}.txt'.format(question['name_list'])
         f = open(path, 'r')
         option_list = list(f.readlines())

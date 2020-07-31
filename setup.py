@@ -14,8 +14,10 @@ setup(
     executables = [Executable("website.py")]
 )
 
-# [windows]```python setup.py build``` [mac]```python3 setup.py build```
-# ???[windows]```python setup.py bdist_msi``` or [mac]```python3 setup.py bdist_msi```
+# [windows] ```python setup.py build```
+# [mac] ```python3 setup.py build```
+# ???[windows]```python setup.py bdist_msi``` or 
+# ???[mac]```python3 setup.py bdist_msi```
 
 # if there is an error due to ...:
 # module not being recognized: add it to packages
