@@ -1,7 +1,7 @@
 # sets up how the website flows
 from flask import render_template, flash, redirect, request, url_for, session, send_file
 from app import app
-from os import getcwd
+import os, sys
 from question_generation import qGetter, qSetup
 # home page stuff
 @app.route('/', methods = ['GET', 'POST'])
@@ -11,14 +11,14 @@ def index():
     session['topic'] = 'subjects'
     question_type = 'checkbox'
     # getting the avaliable subjects
-    path = getcwd()
+    path = os.path.abspath(os.path.dirname(sys.argv[0]))
     path = path + "/lists/subjects.txt"
     f = open(path, 'r')
     subjects = list(f.readlines())
     f.close()
     subjects = [_.rstrip().replace(" ", "_") for _ in subjects]
     #getting the avaliable UIL_questions 
-    path = getcwd()
+    path = os.path.abspath(os.path.dirname(sys.argv[0]))
     path = path + "/lists/UIL_questions.txt"
     f = open(path, 'r')
     UIL_questions  = list(f.readlines())
@@ -95,7 +95,7 @@ def testing():
 @app.route('/submit', methods = ['GET', 'POST'])
 def submit():
     if request.method == 'POST':
-        path = getcwd()
+        path = os.path.abspath(os.path.dirname(sys.argv[0]))
         path = path + "/questions/submitted_questions.txt"
         f = open(path, 'a')        
         # adding all the different vars to the new question file
@@ -114,7 +114,7 @@ def submit():
 
 @app.route('/submit_download')
 def download():
-    path = getcwd()
+    path = os.path.abspath(os.path.dirname(sys.argv[0]))
     path = path + "/submitted_questions.txt"
     return send_file(path, as_attachment=True)
 
@@ -136,7 +136,7 @@ def UIL_index():
     session.clear()
     session['topic'] = 'UIL test'
     question_type = 'radio'
-    path = getcwd()
+    path = os.path.abspath(os.path.dirname(sys.argv[0]))
     path = path + "/UIL/UIL_tests.txt"
     f = open(path, 'r')
     tests = list(f.readlines())
@@ -153,7 +153,7 @@ def UIL_index():
 
 @app.route('/test_setup')
 def test_setup():
-    path = getcwd()
+    path = os.path.abspath(os.path.dirname(sys.argv[0]))
     path = path + "/UIL/{}_UIL.txt".format(session['test_name'])
     f = open(path, 'r')
     test_questions = list(f.readlines())
