@@ -1,0 +1,7 @@
+title: <>evalulate<>
+question: <>Evalulate <>
+type: <>evalulate<>
+operands: 6
+seperating operators: <>{} + <>,, <>{} - <>,, <>{} * <>,, <>{} / <>
+single operators: <>(x__**y__)<>,, <>math.factorial(x__)<>,, <>(1/x__)<>,, <>math.cos(x__)<>,, <>math.sin(x__)<>,, <>math.tan(x__)<>
+round: 2

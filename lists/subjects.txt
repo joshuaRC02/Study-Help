@@ -1,3 +1,0 @@
-ratios
-n-sided polygons
-sequences

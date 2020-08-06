@@ -1,0 +1,17 @@
+title: <>sum of n terms<>
+question: <>What is the value of this expression: a__ + o__ + ... + f__<>
+type: <>equation<>
+variables: a:int:-100<100,, d:int:-100<100,, n:int:20<50
+equation_vars: o=a__ + d__,, f= a__ + (n__ - 1) * d__,, answer = (2 * a__ + (n__ - 1) * d__) * n__ / 2
+round: 0
+hint: <>answer = (2 * a + (n - 1) * d) * n / 2<>
+reasoning: <> <>
+
+title: <>find n term<>
+question: <>What is the n__th term of this series: a__ + o__ + p__ ... <>
+type: <>equation<>
+variables: a:int:-100<100,, d:int:-100<100,, n:int:20<50
+equation_vars: o = a__ + d__,, p =o__ + d__,, answer = a__ + (n__ - 1) * d__
+round: 0
+hint: <>answer = a + (n - 1) * d<>
+reasoning: <> <>

@@ -1,8 +1,0 @@
-title: <>leaving high school opposite directions<>
-question: <>'name1' left the high school at 'hour1~~':'min1~~' PM and began walking westawrd at a speed of 'mph1' mph. At 'hour2~~':'min2~~' PM, 'name2' left the high school and began running eastward at a speed of 'mph2' mph. How many hours until they are 'dist' miles apart?<>
-type: <>equation<>
-variables: names:names:2,, hour1~~:int:3<7,, min1~~:int:0<59,, mph1:int:1<7,, hour2~~:var:'hour1~~'<11,, min2~~:int:0<59,, mph2:var:'mph1'<10,, dist:int:70<140
-equation_vars: diff = ('hour2~~' + 'min2~~' / 60) - ('hour1~~' + 'min1~~' / 60),, answer  = ('dist' - 'mph1' * 'diff') / ('mph1' + 'mph2')
-round: 2
-hint: <>answer  = (dist - mph1 * diff) / (mph1 + mph2)<>
-reasoning: <> <>

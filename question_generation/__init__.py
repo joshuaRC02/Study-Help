@@ -1,2 +1,2 @@
-from .qSetup import qSetup
-from .qGetter import qGetter
+from .q_setup import q_setup
+from .q_getter import q_getter

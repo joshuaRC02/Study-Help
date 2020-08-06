@@ -3,12 +3,12 @@ from cx_Freeze import setup, Executable
 
 build_exe_options = {
     "packages": ["app", "question_generation", "jinja2"],
-    "include_files":["lists", "questions", "UIL"]
+    "include_files":["lists", "tests", "topics"]
 }
 
 setup(
     name="Study Help",
-    version="0.1",
+    version="0.1.4",
     author="Joshua Clark",
     options = {"build_exe": build_exe_options},
     executables = [Executable("website.py")]

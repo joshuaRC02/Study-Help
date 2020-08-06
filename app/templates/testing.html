@@ -2,9 +2,9 @@
 
 {% block left %}
 <h3 class="title">Session Info</h3>
-<ul>Current subjects:
-    {% for s in session['subjects'] %}
-    <li>{{ s }}</li>
+<ul>Current topics:
+    {% for topic in session['topics'] %}
+    <li>{{ topic }}</li>
     {% endfor %}
 </ul>
 <ul>Stats:
@@ -13,15 +13,16 @@
     <li>Streak: {{ session ['streak'] }}</li>
 </ul>
     {% if session['last_answered'] %}
+    {% set question = session['last_question'] %}
     <ul>Last question:
         <li>Result: {{ session['last_result'] }}</li>
-        <li>Duration: {{ session['last_time'] }} seconds</li> 
-        <li>Question: {{ session['last_question'] }}</li> 
-        <li>Your answer: {{ session['your_last_answer'] }}</li>
-        <li>Answer: {{ session['last_answer'] }}</li> 
-        {% if session['last_type'] == 'equation' %}
-            <li>Hint: {{ session['last_hint'] }}</li> 
-            <li>Reasoning: {{ session['last_reasoning'] }}</li> 
+        <li>Duration: {{ question['time'] }} seconds</li> 
+        <li>Question: {{ question['question'] }}</li> 
+        <li>Your answer: {{ question['your_answer'] }}</li>
+        <li>Answer: {{ question['answer'] }}</li> 
+        {% if question['type'] == 'equation' %}
+            <li>Hint: {{ question['hint'] }}</li> 
+            <li>Reasoning: {{ question['reasoning'] }}</li> 
         {% endif %}
     </ul>
     {% endif %}
@@ -30,19 +31,21 @@
 {% block content %}
 <div class="col-sm-8 mx-auto">
     <h3>Question {{ session['question_num'] }}:</h3>
-    <p class="lead font-weight-normal">{{ session['question'] }}</p>
+    {% set question = session['question']%}
+    <p class="lead font-weight-normal">{{ question['question'] }}</p>
     <div>
         <form class="mt-2 mt-md-0" method="POST">
-            {% if session['type'] in ['equation', 'evalulate'] %}
+            
+            {% if question['type'] in ['equation', 'evalulate'] %}
             <input type="text" class="form-control" placeholder="Answer here plz" id="answer" name="answer" autocomplete="off" required>
-            {% if session['type'] == 'equation' %}
+            {% if question['type'] == 'equation' %}
             <div>
                 <button type="button" class="btn btn-outline-success my-2 my-sm-0" id="button" aria-describedby="tooltip">Hint?</button>
-                <div id="tooltip" role="tooltip">{{ session['hint'] }}<div id="arrow" data-popper-arrow></div>
+                <div id="tooltip" role="tooltip">{{ question['hint'] }}<div id="arrow" data-popper-arrow></div>
             </div>
             {% endif %}
-            {% elif session['type'] == 'multiple_choice' %}
-                {% for option in session['options'] %}
+            {% elif question['type'] == 'multiple_choice' %}
+                {% for option in question['options'] %}
                     <input type='radio' name="answer" id={{ option }} value={{ option }} checked hidden>
                     <label for={{ option }}><div class="btn btn-outline-success my-2 my-sm-0 check">{{ option.replace('_', ' ') }}</div></label>
                 {% endfor %}
