@@ -4,19 +4,16 @@
 {% endblock %}
 
 {% block content %}
-<div id="text">
-    <h3>Hi! Which {{ session['topic'] }} would you like to study (choose at least one or else...)</h3>
-    <br>
-    <body class="text-center" data-gr-c-s-loaded="true">
-        <form class="form-signin" method="POST">
-            {% for test in tests %}
-            <input type={{ question_type }} name="options" id={{ test }} value={{ test }} checked hidden>
-            <label for={{ test }}><div class="btn btn-outline-success my-2 my-sm-0 check">{{ test.replace('_', ' ').capitalize() }}</div></label>
-            {% endfor %}
-            <button class="btn btn-lg btn-outline-success btn-block" type="submit">Submit</button>
-        </form>
-    </body>
-</div>
+<h1>Hi! Which test would you like to study (choose at least one or else...)</h1>
+<form method="POST">
+    <div>
+        {% for test in tests %}
+        <input type="radio" name="options" id={{ test }} value={{ test }} checked>
+        <label for={{ test }}>{{ test.replace('_', ' ').capitalize() }}</label>
+        {% endfor %}
+    </div>
+    <button type="submit">Submit</button>
+</form>
 {% endblock %}
 
 {% block right %}

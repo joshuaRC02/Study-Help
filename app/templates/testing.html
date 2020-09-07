@@ -1,57 +1,70 @@
 {% extends "base.html" %}
 
 {% block left %}
-<h3 class="title">Session Info</h3>
-<ul>Current topics:
-    {% for topic in session['topics'] %}
-    <li>{{ topic }}</li>
-    {% endfor %}
-</ul>
-<ul>Stats:
-    <li>Correct: {{ session['correct'] }}</li>
-    <li>Accuracy: {{ session['accuracy'] }}</li>
-    <li>Streak: {{ session ['streak'] }}</li>
-</ul>
-    {% if session['last_answered'] %}
-    {% set question = session['last_question'] %}
-    <ul>Last question:
-        <li>Result: {{ session['last_result'] }}</li>
-        <li>Duration: {{ question['time'] }} seconds</li> 
-        <li>Question: {{ question['question'] }}</li> 
-        <li>Your answer: {{ question['your_answer'] }}</li>
-        <li>Answer: {{ question['answer'] }}</li> 
-        {% if question['type'] == 'equation' %}
-            <li>Hint: {{ question['hint'] }}</li> 
-            <li>Reasoning: {{ question['reasoning'] }}</li> 
-        {% endif %}
+<h1>Session Info</h1>
+<div class="dropdown">
+    <button onclick="dropdown('topics')" class="dropbtn">Current topics:</button>
+    <ul id="topics" class="dropdown-content">
+        {% for topic in session['topics'] %}
+        <li>{{ topic }}</li>
+        {% endfor %}
     </ul>
-    {% endif %}
+</div>
+<div class="dropdown">
+    <button onclick="dropdown('stats')" class="dropbtn">Stats:</button>
+    <ul id="stats" class="dropdown-content">
+        <li>Correct: {{ session['correct'] }}</li>
+        <li>Accuracy: {{ session['accuracy'] }}</li>
+        <li>Streak: {{ session ['streak'] }}</li>
+    </ul>
+</div>
+{% if session['last_question'] %}
+{% set questions = session['last_questions'] %}
+<div class="dropdown">
+    <button onclick="dropdown('last_questions')" class="dropbtn">Previous questions</button>
+    <ul id="last_questions" class="dropdown-content">
+        {% for question in questions %}
+        <li class="dropdown">
+            <button onclick="dropdown('last_question')" class="dropbtn">Question {{ question['num'] }}:</button>
+            <ul id="last_question" class="dropdown-content">
+                <li>Result: {{ question['result'] }}</li>
+                <li>Duration: {{ question['time'] }} seconds</li> 
+                <li>Question: {{ question['question'] }}</li> 
+                <li>Your answer: {{ question['your_answer'] }}</li>
+                <li>Answer: {{ question['answer'] }}</li> 
+                {% if question['type'] == 'equation' %}
+                    <li>Hint: {{ question['hint'] }}</li> 
+                    <li>Reasoning: {{ question['reasoning'] }}</li> 
+                {% endif %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
 {% endblock %}
 
 {% block content %}
-<div class="col-sm-8 mx-auto">
-    <h3>Question {{ session['question_num'] }}:</h3>
+<div>
+    <p class="question-num">Question {{ session['question_num'] }}:</p>
     {% set question = session['question']%}
-    <p class="lead font-weight-normal">{{ question['question'] }}</p>
+    <p class="question">{{ question['question'] }}</p>
     <div>
-        <form class="mt-2 mt-md-0" method="POST">
-            
+        <form method="POST">
             {% if question['type'] in ['equation', 'evalulate'] %}
-            <input type="text" class="form-control" placeholder="Answer here plz" id="answer" name="answer" autocomplete="off" required>
-            {% if question['type'] == 'equation' %}
-            <div>
-                <button type="button" class="btn btn-outline-success my-2 my-sm-0" id="button" aria-describedby="tooltip">Hint?</button>
-                <div id="tooltip" role="tooltip">{{ question['hint'] }}<div id="arrow" data-popper-arrow></div>
-            </div>
-            {% endif %}
+                <input type="text" placeholder="Answer here plz" id="answer" name="answer" autocomplete="off" required>
+                {% if question['type'] == 'equation' %}
+                    <div class="tooltip">Hint?
+                        <span class="tooltip-text">{{ question['hint'] }}</span>
+                    </div>
+                {% endif %}
             {% elif question['type'] == 'multiple_choice' %}
                 {% for option in question['options'] %}
-                    <input type='radio' name="answer" id={{ option }} value={{ option }} checked hidden>
-                    <label for={{ option }}><div class="btn btn-outline-success my-2 my-sm-0 check">{{ option.replace('_', ' ') }}</div></label>
+                    <input type='radio' name="answer" id={{ option }} value={{ option }} checked>
+                    <label for={{ option }}>{{ option.replace('_', ' ') }}</label>
                 {% endfor %}
-                <br>
             {% endif%}
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+            <button type="submit">Submit</button>
         </form>
     </div>
 </div>

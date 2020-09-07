@@ -1,11 +1,191 @@
-
-/* this to make it so that the box is the checkbox*/
-input:checked + label .check {
-    visibility: visible;
-    background-color: #28a745;
-    color: #fff;
+body {
+    margin: 0px;
+    font-family: "Segoe UI";
+}
+nav {
+    background-color: #26323f;
+    text-align: center;
+    padding: .75rem;
+    display: block;
 }
 
-input.checkbox:checked + label:before {
+.nav-item {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: x-large;
+    padding: .75rem;
+    font-weight: 400;
+    display: inline;
+}
+
+.columns {
+    display: flex;
+}
+
+.sidebar {
+    flex: 20%;
+}
+
+main {
+    flex: 60%;
+    color: #26323f;
+    text-align: center;
+}
+
+h1 {
+    font-size: xx-large;
+    font-weight: 700;
+}
+
+.question {
+    font-size: large;
+    font-weight: 400;
+}
+
+.question-num {
+    font-size: larger;
+    font-weight: 700;
+}
+
+/* checkbox fun*/
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label {
+    padding: 1rem;
+    background-color: #ffc0cb;
+    border: .1rem solid #26323f;
+    border-radius: 1rem;    
+    display: inline-block;
+}
+
+input[type="checkbox"]:checked + label {
+    background-color: #cfffc0;
+}
+
+/* radio fun*/
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"] + label {
+    padding: 1rem;
+    background-color: #ffc0cb;
+    border: .1rem solid #26323f;
+    border-radius: 1rem;    
+    display: inline-block;
+}
+
+input[type="radio"]:checked + label {
+    background-color: #cfffc0;
+}
+
+/* text fun*/
+input[type="text"] {
+    width: 100%;
+    height: 2rem;
+    border-radius: .5rem;
+    border-color: #26323f;
+}
+
+/* submit fun */
+button[type="submit"] {
+    width: 4rem;
+    height: 2rem;
+    border-radius: .5rem;
+    border-color: #26323f;
+    display: inline-block;
+}
+
+/* tooltip fun https://www.w3schools.com/howto/howto_css_tooltip.asp */
+.tooltip {
+position: relative;
+display: inline-block;
+border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 30rem;
+    background-color: #26323f;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 1rem;
+
+    position: absolute;
+    z-index: 1;
+    top: 125%;
+    left: 50%;
+    margin-left: -15rem;
+
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltip-text::after {
     content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -1.5rem;
+    border-width: .5rem;
+    border-style: solid;
+    border-color: transparent transparent #555 transparent;
 }
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* dropdown fun https://www.w3schools.com/howto/howto_js_dropdown.asp */
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #c0c4ff;
+    color: #000000;
+    padding: .5rem 1.5rem .5rem 1.5rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Dropdown button on hover & focus */
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #727cff;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #26323f;
+    border: .1rem solid #000000;
+    border-radius: 1rem;
+    min-width: 40rem;
+    height: 20rem;
+    z-index: 1;
+    overflow-y: auto;
+    word-wrap: normal;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content li {
+    color: #ffffff;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #162433}
+  
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {display:block;}

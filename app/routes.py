@@ -18,7 +18,6 @@ def index():
         return redirect(url_for('question_setup'))
 
     # initalizing all the vars for the page
-    session['topic'] = 'topics'
     question_type = 'checkbox'
 
 
@@ -35,6 +34,7 @@ def index():
         session['correct'] = 0
         session['incorrect'] = 0
         session['streak'] = 0
+        session['last_questions'] = []
         session['accuracy'] = 'None wrong so far, good job!'
 
     
@@ -69,20 +69,20 @@ def testing():
 
         # giving the corresponding stats for correct and incorrrect answers
         if answer == question['answer']:
-            session['last_result'] = "Correct, good job!"
+            question['result'] = "Correct, good job!"
             session['correct']+= 1
             session['streak']+= 1
         else:
-            session['last_result'] = "Incorrect, try again next time."
+            question['result'] = "Incorrect, try again next time."
             session['incorrect']+=1
             session['streak'] = 0
         
         
         # generating some stats
         session['accuracy'] = session['correct'] / session['question_num']
-        
-        session['last_answered'] = True
-        session['last_question'] = question
+        session['last_question'] = True
+        question['num'] = session['question_num'] - 1
+        session['last_questions'].append(question)
         return redirect(url_for('testing'))
     
     # getting info
@@ -134,7 +134,6 @@ def shutdown():
 def UIL_index():
     # session.clear()
     # initalizating
-    session['topic'] = 'UIL test'
     question_type = 'radio'
 
 

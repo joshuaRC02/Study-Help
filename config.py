@@ -8,3 +8,4 @@ class Config(object):
     SECRET_KEY = 'you-will-never-guess' #or environ.get('SECRET_KEY')
     # makes session happy :)
     SESSION_TYPE = 'filesystem'  #environ.get('SESSION_TYPE')
+    DEBUG = True

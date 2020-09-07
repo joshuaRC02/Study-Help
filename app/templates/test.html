@@ -4,26 +4,25 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-sm-8 mx-auto">
-    <form class="mt-2 mt-md-0" method="POST">
-        
-        {% for q in session['test'] %}
-            <h3>Question {{ q['number'] }}:</h3>
-            <p class="lead font-weight-normal">{{ q['question'] }}</p>
+<form method="POST">
+    {% for q in session['test'] %}
+    <div>
+        <p class="question-num">Question {{ q['number'] }}:</h1>
+        <p class="question">{{ q['question'] }}</p>
         {% if q['type'] in ['equation', 'evalulate'] %}
             <input type="text" class="form-control" placeholder="Answer here plz" id={{ q['number'] }} name="answers" autocomplete="off">
         {% elif q['type'] == 'multiple_choice' %}
             {% for option in q['options'] %}
                 <input type='radio' name="answers" id={{ option }} value={{ option }} hidden>
-                <label for={{ option }}><div class="btn btn-outline-success my-2 my-sm-0 check">{{ option.replace('_', ' ') }}</div></label>
+                <label for={{ option }}>{{ option.replace('_', ' ') }}</label>
             {% endfor %}
-                <input type='radio' name="answers" id=" " value=" " checked hidden>
-            <br>
+            <input type='radio' name="answers" id=" " value=" " checked hidden>
+        <br>
         {% endif%}
-        {% endfor %}
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
-    </form>
-</div>
+    </div>
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
 {% endblock %}
 
 {% block right %}

@@ -12,17 +12,17 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-sm-8 mx-auto">
-        {% for q in session['test'] %}
-            <h3>Question {{ q['number'] }}:</h3>
-            <p class="lead  font-weight-normal">{{ q['question'] }}</p>
-            <p class="lead  font-weight-normal"><b>Result: </b>{{ q['result'] }}</p>
-            <p class="lead  font-weight-normal"><b>Your answer:</b> {{ q['your_answer'] }}</p>
-            <p class="lead  font-weight-normal"><b>Correct answer:</b> {{ q['answer'] }}</p>
+<div>
+    {% for q in session['test'] %}
+        <h3>Question {{ q['number'] }}:</h3>
+        <p>{{ q['question'] }}</p>
+        <p><b>Result: </b>{{ q['result'] }}</p>
+        <p><b>Your answer:</b> {{ q['your_answer'] }}</p>
+        <p><b>Correct answer:</b> {{ q['answer'] }}</p>
         {% if q['type'] == 'equation' %}
-            <p class="lead  font-weight-normal"><b>Reasoning behind correct answer:</b> {{ q['reasoning'] }}</p>
+        <p><b>Reasoning behind correct answer:</b> {{ q['reasoning'] }}</p>
         {% endif %}
-        {% endfor %}
+    {% endfor %}
 </div>
 {% endblock %}
 

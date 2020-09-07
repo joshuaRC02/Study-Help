@@ -19,8 +19,6 @@ Study help is an app made to help me study with variety and personlization.
 
 ## Dependiencies
 * [Python 3.8](https://www.python.org/)
-* [Bootstrap](https://getbootstrap.com/)
-* [Popper](https://popper.js.org/)
 * [Flask](https://pypi.org/project/Flask/) 
 * [Flask-session](https://pypi.org/project/Flask-Session/)
 * [Jinja2](https://pypi.org/project/Jinja2/)
