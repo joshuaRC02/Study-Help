@@ -5,4 +5,4 @@ variables: x:int:1<50,, y:int:1<50,, z:int:1<50
 equation_vars: answer = (x__ + 1) * (y__ + 1) * z__
 round: 0
 hint: <>answer = (x + 1) * (y + 1) * z <>
-reasoning: <> <>
+reasoning: <>Since AD = AB + BC + CD and AB = x__BC, then AD = x__BC + BC + CD. Because BC = y__CD, AD = x__(y__CD) + y__CD + CD. Finally CD = z__, therfore AD = x__(y__(z__)) + y__(z__) + z__<>

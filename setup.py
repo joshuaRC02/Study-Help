@@ -24,3 +24,15 @@ setup(
 # files not being found: add it to include_files
 
 # licenses can be figured out with ```pip-licenses```
+
+# setup env
+# $ python -m venv env
+
+# permissions
+# $ Set-ExecutionPolicy Unrestricted
+
+# activate env
+# $ env\Scripts\activate
+
+# install requirements
+# $ pip install -r requirements.txt

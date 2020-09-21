@@ -17,3 +17,16 @@ window.onclick = function(event) {
         }
     }
 }
+
+/* switcher */
+
+function switcher(type) {
+    if (document.getElementById('equation').classList.contains('show')) {
+        document.getElementById('equation').classList.remove('show');
+    }
+    if (document.getElementById('multiple_choice').classList.contains('show')) {
+        document.getElementById('multiple_choice').classList.remove('show');
+    }
+    document.getElementById(type).classList.toggle('show');
+    document.getElementById(type).value.setAttribute('value', type);
+}

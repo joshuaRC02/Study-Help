@@ -24,9 +24,10 @@
     <button onclick="dropdown('last_questions')" class="dropbtn">Previous questions</button>
     <ul id="last_questions" class="dropdown-content">
         {% for question in questions %}
+        {% set num = question['num'] %}
         <li class="dropdown">
-            <button onclick="dropdown('last_question')" class="dropbtn">Question {{ question['num'] }}:</button>
-            <ul id="last_question" class="dropdown-content">
+            <button onclick="dropdown('{{ num }}')" class="dropbtn">Question {{ num }}:</button>
+            <ul id={{ num }} class="dropdown-content">
                 <li>Result: {{ question['result'] }}</li>
                 <li>Duration: {{ question['time'] }} seconds</li> 
                 <li>Question: {{ question['question'] }}</li> 
