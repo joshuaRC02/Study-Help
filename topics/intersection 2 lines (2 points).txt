@@ -1,0 +1,30 @@
+title:upper
+
+type:equation
+
+question:Line L1 has 2 points at (_a, _b) and (_c, _d). Line L2 has 2 points at (_e, _f) and (_g, _h). If L1 intersects L2 at (a, b), then what does a + b equal?
+
+hint:m~equation~(y2 - y1) / (x2 - x1), y-int~equation~y - m * x, a~equation~(y-int2 - y-int1) / (m1 - m2), b~equation~m * a + y-int
+
+reasoning:
+
+round: 2
+
+variables: a~int~-10<0  b~int~1<25  c~int~1<11  d~int~-25<0  e~int~1<11  f~int~1<25  g~int~-10<0  h~int~-25<0  m1~equation~(_d - _b) / (_c - _a)  m2~equation~(_h - _f) / (_g - _e)  b1~equation~_b - _m1 * _a  b2~equation~_f - _m2 * _e  x~equation~(_b2 - _b1) / (_m1 - _m2)  y~equation~_m1 * _x + _b1  answer~equation~_x + _y
+
+
+
+
+title:lower
+
+type:equation
+
+question:Line L1 has 2 points at (_a, _b) and (_c, _d). Line L2 has 2 points at (_e, _f) and (_g, _h). If L1 intersects L2 at (a, b), then what does a + b equal?
+
+hint:m~equation~(y2 - y1) / (x2 - x1), y-int~equation~y - m * x, a~equation~(y-int2 - y-int1) / (m1 - m2), b~equation~m * a + y-int
+
+reasoning:
+
+round: 2
+
+variables: e~int~-10<0  f~int~1<25  g~int~1<11  h~int~-25<0  a~int~1<11  b~int~1<25  c~int~-10<0  d~int~-25<0  m1~equation~(_d - _b) / (_c - _a)  m2~equation~(_h - _f) / (_g - _e)  b1~equation~_b - _m1 * _a  b2~equation~_f - _m2 * _e  x~equation~(_b2 - _b1) / (_m1 - _m2)  y~equation~_m1 * _x + _b1  answer~equation~_x + _y

@@ -230,6 +230,7 @@ public class Question{
 
         for(File topic: topics){
             String topicName = topic.getName().replace(".txt", "");
+            System.out.println("\n\nTopic: " + topicName + "\n");
             Question[] questions = getTopicQuestions(topicName);
             for(Question question: questions)
             System.out.println(question);
