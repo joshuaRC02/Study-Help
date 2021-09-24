@@ -1,5 +1,5 @@
-title: <>father of computer science<>
-question: <>This mathematician is known as the "father of computer science." He worked in the fields of differential equations, algebraic logic, and symbolic logic. Who is he?<>
-type: <>multiple_choice<>
-answer: <>Alan Turing<>
-options_list: <>math_names<>
+title:father of computer science
+type:multiple choice
+question:This mathematician is known as the "father of computer science." He worked in the fields of differential equations, algebraic logic, and symbolic logic. Who is he?
+answer:Alan Turing
+choices:math names

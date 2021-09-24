@@ -2,7 +2,7 @@ title: leaving high school opposite directions
 
 type: equation
 
-question: _name1 left the high school at _hour1:_min PM and began walking westawrd at a speed of _mph1 mph. At _hour2:_min PM, _name2 left the high school and began running eastward at a speed of mph2__ mph. How many hours until they are dist__ miles apart?
+question: _name1 left the high school at _hour1:_min PM and began walking westawrd at a speed of _mph1 mph. At _hour2:_min PM, _name2 left the high school and began running eastward at a speed of _mph2 mph. How many hours until they are _dist miles apart?
 
 hint: answer = (dist - mph1 * diff) / (mph1 + mph2)
 
@@ -10,4 +10,4 @@ reasoning:
 
 round: 2
 
-variables: hour1~int~3<7  min1~int~0<59  mph1~int~1<7  hour2~dep~_hour1<11  min2~int~0<59  mph2~dep~_mph1<10  dist~int~70<140  diff~equation~(_hour1 + _min / 60) - (_hour2 + _min / 60)  answer~equation~(dist__ - _mph1 * diff__) / (_mph1 + mph2__)
+variables: hour1~int~3<7  min1~int~0<59  mph1~int~1<7  hour2~dep~_hour1<11  min2~int~0<59  mph2~dep~_mph1<10  dist~int~70<140  diff~equation~(_hour1 + _min / 60) - (_hour2 + _min / 60)  answer~equation~(_dist - _mph1 * _diff) / (_mph1 + _mph2)

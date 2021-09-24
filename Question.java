@@ -1,11 +1,11 @@
 import java.io.*;
 import java.util.*;
 class Variable{
-
+    // general info
     public String name;
     public String varType;
     // generated numbers uses these vars range = [floor,numCeil] \ noNos
-    // int, double, depended
+    // int, double, dep
     public String floor; // least val allowed
     public String ceil; // max val allowed 
     public String[] noNos; // numbers that break stuff 1/x -> x != 0
@@ -103,10 +103,7 @@ class Variable{
 
 
 public class Question{
-    public static final String TOPIC_FOLDER = "/topics/";
-    public static final String FIELD_SEPERATOR = ":";
-    public static final String INFO_SEPERATOR = "  ";
-
+    // general info
     public String title;
     public String type;
     // question type equation
@@ -116,16 +113,73 @@ public class Question{
     public int precision;
     public Variable[] variables;
     public String[] equations;
+    // question type multyiple choice
+    public String answer;
+    public String[] choices;
 
 
-    // creates the reader for the topic file
-    public static BufferedReader getReader(String topic) throws FileNotFoundException{
-        String path = System.getProperty("user.dir");
-        File topicFile = new File(path + TOPIC_FOLDER + topic + ".txt");
+    // creates the reader for the a file
+    public static BufferedReader getReader(String folder, String fileName) throws FileNotFoundException{
+        final String MAIN_PATH = System.getProperty("user.dir");
+        File topicFile = new File(MAIN_PATH + folder + fileName + ".txt");
         BufferedReader reader = new BufferedReader(new FileReader(topicFile));
         return reader;
     }
-    
+
+    // returns a string array with all the choices
+    public static String[] getChoices(String choicesString) throws IOException{
+        // getting the file
+        final String CHOICES_FOLDER = "/choices/";
+        BufferedReader reader = getReader(CHOICES_FOLDER, choicesString);
+
+        // reading the file for the choices
+        ArrayList<String> choices = new ArrayList<String>();
+        String line;
+        while((line = reader.readLine()) != null){
+            choices.add(line.trim());
+        }
+
+        reader.close();
+        return choices.toArray(new String[0]);
+    }
+
+    // given the field it fills info is formatted and put into its respective field
+    public void addInfo(String field, String info) throws IOException{
+        switch(field){
+            //basic parts
+            case "title":
+                this.title = info;
+                break;
+            case "type":
+                this.type = info;
+                break;
+            case "question":
+                this.question = info;
+                break;
+            //equation parts
+            case "hint":
+                this.hint = info;
+                break;
+            case "reasoning":
+                this.reasoning = info;
+                break;
+            case "precision":
+                this.precision = Integer.parseInt(info);
+                break;
+            case "variables":
+                final String INFO_SEPERATOR = "  ";
+                this.variables = Variable.parseVariables(info, INFO_SEPERATOR);
+                break;
+            //multiple choice
+            case "answer":
+                this.answer = info;
+                break;
+            case "choices":
+                this.choices = getChoices(info);
+                break;
+        }
+    }
+
     public static Question[] readFile(BufferedReader reader) throws IOException{
         ArrayList<Question> questions = new ArrayList<Question>();
         String line;
@@ -137,6 +191,7 @@ public class Question{
             }
 
             // formatting the line
+            final String FIELD_SEPERATOR = ":";
             String[] split = line.split(FIELD_SEPERATOR,2);
             String field = split[0].toLowerCase();
             if(field.equals("title")){// title has be first for this to work
@@ -157,62 +212,64 @@ public class Question{
     // gets all the questions in a topic
     public static Question[] getTopicQuestions(String topic) throws IOException{
         // getting the doc
-        BufferedReader reader = getReader(topic);
+        final String TOPIC_FOLDER = "/topics/";
+        BufferedReader reader = getReader(TOPIC_FOLDER, topic);
         
         // reading from the file and setting up all the questions
         Question[] questions = readFile(reader);
-        
+
+        reader.close();
         return questions;
     }
 
-    // given the field it fills info is formatted and put into its respective field
-    public void addInfo(String field, String info){
-        switch(field){
-            case "title":
-                this.title = info;
-                break;
-            case "type":
-                this.type = info;
-                break;
-            case "question":
-                this.question = info;
-                break;
-            case "hint":
-                this.hint = info;
-                break;
-            case "reasoning":
-                this.reasoning = info;
-                break;
-            case "precision":
-                this.precision = Integer.parseInt(info);
-                break;
-            case "variables":
-                this.variables = Variable.parseVariables(info, INFO_SEPERATOR);
-                break;
+    public static void testAllTopics() throws IOException{
+        // getting the path
+        String mainPath = System.getProperty("user.dir");
+        final String FOLDER_STRING = "/topics/";
+        File[] topics = new File(mainPath + FOLDER_STRING).listFiles();
+
+        for(File topic: topics){
+            String topicName = topic.getName().replace(".txt", "");
+            Question[] questions = getTopicQuestions(topicName);
+            for(Question question: questions)
+            System.out.println(question);
         }
     }
+
 
     @Override
     public String toString(){
         StringBuilder output = new StringBuilder();
         output.append("Title: " + this.title + "\n");
         output.append("Question: " + this.question + "\n");
-        output.append("Hint: " + this.hint + "\n");
-        output.append("Reasoning: " + this.reasoning + "\n");
-        output.append("Precision: " + this.precision + "\n");
-        output.append("Variables: " + "\n");
-        if(variables != null){
-            for(Variable var: this.variables){
-                output.append("    " + var.toString() + "\n");
-            }
+        // printing important info based on the type of question
+        switch(this.type){
+            case "equation":
+                output.append("Hint: " + this.hint + "\n");
+                output.append("Reasoning: " + this.reasoning + "\n");
+                output.append("Precision: " + this.precision + "\n");
+                if(this.variables != null){
+                    output.append("Variables: " + "\n");
+                    for(Variable var: this.variables){
+                        output.append("    " + var.toString() + "\n");
+                    }
+                }
+                break;
+            case "multiple choice":
+                output.append("Answer: " + this.answer + "\n");
+                if(this.choices != null){
+                    output.append("Choices: " + "\n");
+                    for(String choice: this.choices){
+                        output.append("    " + choice + "\n");
+                    }
+                }
+
         }
 
         return output.toString();
     }
 
     public static void main(String[] args) throws IOException{
-        String topic = "evaluating 2 speeds";
-        Question[] questions = getTopicQuestions(topic);
-        System.out.println(questions[0]);
+        testAllTopics();
     }
 }
