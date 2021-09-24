@@ -1,0 +1,15 @@
+title:x gal tank filled to y depth
+
+type:equation
+
+question:The aquarium in _name1's house holds _x gallons of water when completely full. It is shaped like a cube. If the aquarium is currently filled to a depth of _y feet, how many gallons of water are in the aquarium?
+
+hint:answer = (x / 7.48052)^(2/3) * y * 7.48052
+
+reasoning: 
+
+round:0
+
+variables:x~int~100<1000  y~int~1<50  ftgal~equation~7.48052  answer~equation~math.pow(_x / _ftgal, 2.0 / 3.0) * _y * _ftgal
+
+

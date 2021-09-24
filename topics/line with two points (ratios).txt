@@ -1,0 +1,13 @@
+title:line with two points (ratios)
+
+type:equation
+
+question:Consider line AD with points B and C on line AD. AB = _xBC. BC = _yCD. If CD = _z, then what does AD equal?
+
+hint:answer = (x + 1) * (y + 1) * z 
+
+reasoning:Since AD = AB + BC + CD and AB = _xBC, then AD = _xBC + BC + CD. Because BC = _yCD, AD = _x(_yCD) + _yCD + CD. Finally CD = _z, therefor AD = _x(_y(_z)) + _y(_z) + _z
+
+round:0
+
+variables:x~int~1<50  y~int~1<50  z~int~1<50  answer~equation~(_x + 1) * (_y + 1) * _z

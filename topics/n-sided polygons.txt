@@ -1,0 +1,94 @@
+title:interior angle of n-sided polygon
+
+type:equation
+
+question:What is the interior angle of a _n-sided polygon? (deg)
+
+hint:answer = (180 - 360 / n) / 2 
+
+reasoning:
+
+round:0
+
+variables:n~int~3<20  answer~equation~(180 - 360 / _n) / 2
+
+
+
+title:area of n-sided polygon given apothem length
+
+type:equation
+
+question:What is the area of a _n-sided polygon with a apothem length of _a?
+
+hint:answer = a^2 * n * tan(pi / n)
+
+reasoning:
+
+round:2
+
+variables:a~int~3<20  n~int~3<20  answer~equation~m.pow(_a,2) * _n * m.tan(m.PI / _n)
+
+
+
+title:area of n-sided polygon given radius length
+
+type:equation
+
+question:What is the area of a _n-sided polygon with a radius length of _r?
+
+hint:answer = r^2 * n * sin(pi * 2 / n) / 2
+
+reasoning:
+
+round:2
+
+variables:r~int~3<20  n~int~3<20  answer~equation~m.pow(_r,2) * _n * m.sin(m.PI * 2 / _n) / 2
+
+
+
+title:area of n-sided polygon given side length
+
+type:equation
+
+question:What is the area of a _n-sided polygon with a side length of _s?
+
+hint:answer = s^2 * n / (4 * tan(pi / n))
+
+reasoning:
+
+round:2
+
+variables:s~int~3<20  n~int~3<20  answer~equation~m.pow(_s,2) * _n / (4 * m.tan(m.PI / _n))
+
+
+
+title:find the apothem of n-sided polygon given radius
+
+type:equation
+
+question:What is the apothem of a _n-sided polygon with a radius length of _r?
+
+hint:answer = r * cos(pi / n)
+
+reasoning:
+
+round:2
+
+variables:r~int~3<20  n~int~3<20  answer~equation~_r * m.cos(m.PI / _n)
+
+
+
+title:find the apothem of n-sided polygon given side
+
+type:equation
+
+question:What is the apothem of a _n-sided polygon with a radius length of _s?
+
+hint:answer = s / (2 * tan(pi / n))
+
+reasoning:
+
+round:2
+
+variables:s~int~3<20  n~int~3<20  answer~equation~_s / (2 * m.tan(m.PI / _n))
+

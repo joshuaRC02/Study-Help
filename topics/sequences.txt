@@ -1,0 +1,31 @@
+title:sum of n terms
+
+type:equation
+
+question:What is the value of this expression: _a + _o + ... + _f
+
+hint:answer = (2 * a + (n - 1) * d) * n / 2
+
+reasoning: 
+
+round:0
+
+variables:a~int~-100<100  d~int~-100<100  n~int~20<50  o~equation~_a + _d  f~equation~_a + (_n - 1) * _d  answer~equation~(2 * _a + (_n - 1) * _d) * _n / 2.0
+
+
+
+title:find n term
+
+type:equation
+
+question:What is the _nth term of this series:_a + _o + _p ... 
+
+hint:answer = a + (n - 1) * d
+
+reasoning: 
+
+round:0
+
+variables:a~int~-100<100  d~int~-100<100  n~int~20<50  o~equation~_a + _d  p~equation~_o + _d  answer~equation~_a + (_n - 1) * _d
+
+

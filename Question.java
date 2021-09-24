@@ -5,7 +5,6 @@ class Variable{
     public String name;
     public String varType;
     // generated numbers uses these vars range = [floor,numCeil] \ noNos
-    // int, double, dep
     public String floor; // least val allowed
     public String ceil; // max val allowed 
     public String[] noNos; // numbers that break stuff 1/x -> x != 0

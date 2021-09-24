@@ -1,8 +1,0 @@
-title: <>x gal tank filled to y depth<>
-question: <>The aquarium in name1__'s house holds x__ gallons of water when completely full. It is shaped like a cube. If the aquarium is currently filled to a depth of y__ feet, how many gallons of water are in the aquarium?<>
-type: <>equation<>
-variables: x:int:100<1000,, y:int:1<50,, names:names:1
-equation_vars: ftgal = 7.48052,, answer = math.pow(x__ / ftgal__, 2 / 3) * y__ * ftgal__
-round: 0
-hint: <>answer = (x / 7.48052)^(2/3) * y * 7.48052<>
-reasoning: <> <>
