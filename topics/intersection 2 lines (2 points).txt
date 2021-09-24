@@ -4,7 +4,7 @@ type:equation
 
 question:Line L1 has 2 points at (_a, _b) and (_c, _d). Line L2 has 2 points at (_e, _f) and (_g, _h). If L1 intersects L2 at (a, b), then what does a + b equal?
 
-hint:m~equation~(y2 - y1) / (x2 - x1), y-int~equation~y - m * x, a~equation~(y-int2 - y-int1) / (m1 - m2), b~equation~m * a + y-int
+hint:m = (y2 - y1) / (x2 - x1), y-int = y - m * x, a = (y-int2 - y-int1) / (m1 - m2), b = m * a + y-int
 
 reasoning:
 
@@ -21,7 +21,7 @@ type:equation
 
 question:Line L1 has 2 points at (_a, _b) and (_c, _d). Line L2 has 2 points at (_e, _f) and (_g, _h). If L1 intersects L2 at (a, b), then what does a + b equal?
 
-hint:m~equation~(y2 - y1) / (x2 - x1), y-int~equation~y - m * x, a~equation~(y-int2 - y-int1) / (m1 - m2), b~equation~m * a + y-int
+hint:m = (y2 - y1) / (x2 - x1), y-int = y - m * x, a = (y-int2 - y-int1) / (m1 - m2), b = m * a + y-int
 
 reasoning:
 
